@@ -226,7 +226,7 @@ if(parentOne.sex === 'm' || parentOne.sex === 'lm' || parentOne.sex === 'am'){
 if( mommy.name === 'Lissa' && daddy.name === 'Chrom'){
     return false + 'gross dude'
 }
-//converting gender classes
+//converting gender classes testtttttttttttttttttttttttt
 
 let key = Object.keys(parentNchild)
 var values = Object.values(parentNchild)
