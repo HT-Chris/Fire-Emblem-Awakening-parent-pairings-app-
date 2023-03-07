@@ -193,22 +193,12 @@ let condense = function(x, y){
 }
 
 let baby = function(parentOne, parentTwo){
-    
-    //edge case for avatar as a parent
-    /*
-    * return a new function?
-    * 
-    if (classConvert.has(mommy.name) || classConvert.has(daddy.name)){
-        console.log('check the table')
-    }
-     * 
-     */
-
     // see if parents are opposite sex
     let reproductive = parentOne.sex + parentTwo.sex
     reproductive = reproductive.split('').sort().join('')
 
     if( !parentTable.includes(reproductive)){
+        console.log(reproductive)
         return false + ' no baby'
     }
 
@@ -223,41 +213,27 @@ if(parentOne.sex === 'm' || parentOne.sex === 'lm' || parentOne.sex === 'am'){
     daddy = parentTwo
 }
 
-if( mommy.name === 'Lissa' && daddy.name === 'Chrom'){
-    return false + 'gross dude'
-}
 //converting gender classes
-
+let daddyClass =[]
+let daddySkills = []
+let mommyClass = []
+let mommySkills = []
 let key = Object.keys(parentNchild)
 var values = Object.values(parentNchild)
 let child = new Map()
 
-let daddyClass = daddy.getClasses()
-let daddySkills = daddy.getSkill()
-let mommyClass = mommy.getClasses()
-let mommySkills = mommy.getSkill()
-
-
-// finding the child(s) and getting the classes and skills together
-child.name = values[key.indexOf(mommy.name)].name
-child.classes = condense(values[key.indexOf(mommy.name)].getClasses(), daddyClass)
-child.skills = condense(values[key.indexOf(mommy.name)].getSkill(), daddySkills)
-
-// console.log(child)
-if(daddy.name === 'Chrom'){
-
-// add lucina's info
-
-    let child2 = new Map()
-    child2.set('name', 'Lucina' )
-   .set('classes', 'class')
-   .set('skills', 'skill')
-   let children = [child, child2]
-    return children
+if(daddy.name === 'Chrom' || daddy.name === 'boy Test' || mommy.name === 'girl test'){
+    
+    if (classConvert.has(mommy.name) || classConvert.has(daddy.name)){
+        
+    }else{
+        daddyClass = daddy.getClasses()
+        daddySkills = daddy.getSkill()
+        mommyClass = mommy.getClasses()
+        mommySkills = mommy.getSkill()
+    }
 /*
  create lucina or morgan map
-    chrom passes normally, just 2 kids
-    morgan is a whole ass new step
  convert the gender jobs
  add them to the parenty classes
 
@@ -266,19 +242,15 @@ if(daddy.name === 'Chrom'){
 // return lucina or morgan map
 
 }
-return child
 
-}
+// finding the child(s) and getting the classes and skills together
+child.name = values[key.indexOf(mommy.name)].name
+child.classes = condense(values[key.indexOf(mommy.name)].getClasses(), daddyClass)
+child.skills = condense(values[key.indexOf(mommy.name)].getSkill(), daddySkills)
 
-let avatarBaby = function(mother){
-    let child = new Map()
-    let child2 = new Map()
-    let children = [child, child2]
+console.log(child)
+     return child
 
-
-
-    //return children
-    
 }
 
 
@@ -397,6 +369,9 @@ let morgan// note: has no sex for baby making purposes
 
 //  GENDER SPECIFIC CLASSES CONVERSION --not finished
 
+
+
+
 childTable = [
     lucina_CHILD_CLASSES, owain_CHILD_CLASSES, indigo_CHILD_CLASSES,
     brady_CHILD_CLASSES, kjelle_CHILD_CLASSES, cynthia_CHILD_CLASSES, 
@@ -468,10 +443,10 @@ parentTable = [
 
 //console.log(baby(tharja_CHAR_CLASSES, sully_CHAR_CLASSES))
  //console.log(baby(cordelia_CHAR_CLASSES, stahl_CHAR_CLASSES))
- console.log(baby(sumia_CHAR_CLASSES, chrom_CHAR_CLASSES))
+ //console.log(baby(sumia_CHAR_CLASSES, chrom_CHAR_CLASSES))
 // console.log(baby(avatarM_CHAR_CLASSES, flavia_CHAR_CLASSES))
 
- //console.log(baby(stahl_CHAR_CLASSES, sully_CHAR_CLASSES))
+ console.log(baby(stahl_CHAR_CLASSES, sully_CHAR_CLASSES))
 
 
 

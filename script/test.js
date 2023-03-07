@@ -1,17 +1,25 @@
-var isAnagram = function(s, t) {
-    s = s.split('').sort()
-    t = t.split('').sort()
-    console.log(s)
-    console.log(t)
-    for(let i = 0; i < s.length; i++){
-        if( s[i] !=t[i] ){
-            return false
-        }
-    }
-return true
+var topKFrequent = function(nums) {
+let map = new Map()
+
+for(let r of nums){
+    map.set(r)
+}
+
+map = map[0].sort((a,b) => a-b)
+
+console.log(map)
+
 };
 
-let test = isAnagram('anagram', 'nagaram')
-
+let test = topKFrequent(  
+    [["5","3",".",".","7",".",".",".","."]
+    ,["6",".",".","1","9","5",".",".","."]
+    ,[".","9","8",".",".",".",".","6","."]
+    ,["8",".",".",".","6",".",".",".","3"]
+    ,["4",".",".","8",".","3",".",".","1"]
+    ,["7",".",".",".","2",".",".",".","6"]
+    ,[".","6",".",".",".",".","2","8","."]
+    ,[".",".",".","4","1","9",".",".","5"]
+    ,[".",".",".",".","8",".",".","7","9"]])
 
 console.log(test)

@@ -33,6 +33,31 @@ func
         
         
         
+
+        AVATAR AND MORGAN
+=================
+Avatar's inheritable stat maximums are based off of the Asset/Flaw stats chosen at the beginning of the game.
+
+BEST:
+HP: Str +1, Mag +1, Lck +2, Def +2, Res +2
+STR: Str +4, Skl +2, Def +2
+MAG: Mag +4, Spd +2, Res +2
+SKL: Str +2, Skl +4, Def +2
+SPD: Skl +2, Spd +4, Lck +2
+LCK: Str +2, Mag +2, Lck +4
+DEF: Lck +2, Def +4, Res +2
+RES: Mag +2, Spd +2, Res +4
+
+WORST:
+HP: Str -1, Mag -1, Lck -1, Def -1, Res -1
+STR: Str -3, Skl -1, Def -1
+MAG: Mag -3, Spd -1, Res -1
+SKL: Str -1, Skl -3, Def -1
+SPD: Skl -1, Spd -3, Lck -1
+LCK: Str -1, Mag -1, Lck -3
+DEF: Lck -1, Def -3, Res -1
+RES: Mag -1, Spd -1, Res -3
+
         
 */
 
