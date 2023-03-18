@@ -1,47 +1,4 @@
 
-/*
-each PARENT character must have
-
-   X have base class and promotes
-   X have re-class options
-   X pull all skills from above classes
-    have classes that parent is passing down
-*/
-
-/*
-each CHILD must have
-
-    base class and promote
-    mothers child classes
-        import fathers passing classes
-    all skills from above classes
-*/
-
-/*
-functions
-universal
-X base classes and promotes
-       X     with skills
-    parent
-    X  make characters with base classes and re-class options
-        what classes parents are passing down -- mother will pass down child's initial classes and father is own passing classes
-        gender specific classes convert table
-        get all skills from above classes
-        
-    for child
-    combine list of parent's and initial classes
-    ** use all skill function
-    */
-   
-   
-    let parentNchild, parentTable, childTable
-    let  classConvert = new Map()
-
- ////////CLASSES
-
-        
-
-
 //////PROMOTED
 
 
@@ -122,8 +79,40 @@ class   _CHAR_CLASSES {
       let second = this.reClassOne
       let third = this.reClassTwo
      return [first.getAllSkills(), second.getAllSkills(), third.getAllSkills()].flat() 
+    }   
+}
+
+class avatar {
+    constructor(name, sex, start, gender){
+        this.name = name
+        this.sex = sex
+        this.start = start
+        this.classes = [...allClasses.base] 
+        this.genderClasses = gender
     }
-    
+
+    getClasses(){
+        let classesGender = [...this.classes, ...this.genderClasses]
+        let list = []
+        for(let c of classesGender){
+             list.push(c.getAllClasses())
+        }
+         return doubles(list.flat())
+
+    }
+
+    getSkill(){
+        let cla = [...this.classes, ...this.genderClasses]
+        let list = []
+        for(let c of cla){
+            if(c instanceof BASE_CLASS){
+                list.push(c.getAllSkills())
+            }
+        }
+        
+      return doubles(list.flat())
+    }
+
 }
 
 class   _CHILD_CLASSES {
@@ -166,14 +155,6 @@ let doubles = function(arr){
     for(let i of arr){
         sorted.add(i)
     }
-    
-    // for(let i of arr){
-    //     if( i === undefined){        }
-    //     else if( !sorted.includes(i )){
-        //         console.log(i)
-        //         sorted.push(i)
-    //     }
-    // }
     sorted.delete(undefined)
     sorted.delete('none')
     return sorted
@@ -193,16 +174,9 @@ let condense = function(x, y){
 }
 
 let baby = function(parentOne, parentTwo){
-    
-    //edge case for avatar as a parent
-    /*
-    * return a new function?
-    * 
-    if (classConvert.has(mommy.name) || classConvert.has(daddy.name)){
-        console.log('check the table')
-    }
-     * 
-     */
+
+
+
 
     // see if parents are opposite sex
     let reproductive = parentOne.sex + parentTwo.sex
@@ -226,7 +200,6 @@ if(parentOne.sex === 'm' || parentOne.sex === 'lm' || parentOne.sex === 'am'){
 if( mommy.name === 'Lissa' && daddy.name === 'Chrom'){
     return false + 'gross dude'
 }
-//converting gender classes testtttttttttttttttttttttttt
 
 let key = Object.keys(parentNchild)
 var values = Object.values(parentNchild)
@@ -243,36 +216,27 @@ child.name = values[key.indexOf(mommy.name)].name
 child.classes = condense(values[key.indexOf(mommy.name)].getClasses(), daddyClass)
 child.skills = condense(values[key.indexOf(mommy.name)].getSkill(), daddySkills)
 
-// console.log(child)
 if(daddy.name === 'Chrom'){
-
-// add lucina's info
-
-    let child2 = new Map()
+   let child2 = new Map()
     child2.set('name', 'Lucina' )
-   .set('classes', 'class')
-   .set('skills', 'skill')
+   .set('classes', [...lucina_CHILD_CLASSES.getClasses(), ...mommy.getClasses()] )
+   .set('skills', [...lucina_CHILD_CLASSES.getSkill(), ...mommy.getSkill()])
    let children = [child, child2]
     return children
-/*
- create lucina or morgan map
-    chrom passes normally, just 2 kids
-    morgan is a whole ass new step
- convert the gender jobs
- add them to the parenty classes
-
-*/
-
-// return lucina or morgan map
-
 }
 return child
 
 }
 
-let avatarBaby = function(mother){
-    let child = new Map()
+let avatarBaby = function(mother, father){
     let child2 = new Map()
+    child2.set('name', 'Morgan')
+    if(!mother.sex == 'af'){
+        child2.set('sex', 'f')
+    }else{child2.set('sex', 'm')}
+    child2.set('classes', [...avatar.getClasses(),...avatar.getClasses()] )
+
+    let child = new Map()
     let children = [child, child2]
 
 
@@ -332,12 +296,19 @@ const taguel = new BASE_CLASS('Taguel', 'Even Rhythm', 'Beastbane')
 const manakete = new BASE_CLASS('Manakete', "odd Rhythm", 'Wyrmsbane')
 const dancer = new BASE_CLASS('Dancer', 'Luck +4', 'Special Dance')
 
+const allClasses = { base:[ cavalier, myrmidon, wyvernRider, knight, mercenary, archer, thief,
+     darkMage, mage, priestCleric, tactician],
+    af:[pegasusKnight, troubadour],
+    am:[barbarian,fighter]
+}
+
 //////////CHARACTER CLASS OPTIONS
 
-let avatar// sex = am or af
 
-const avatarM_CHAR_CLASSES = new _CHAR_CLASSES('boy test', 'am', tactician, myrmidon, archer)
-const avatarF_CHAR_CLASSES = new _CHAR_CLASSES('girl test', 'af', tactician, myrmidon, archer)
+const avatarM_CHAR_CLASSES = new avatar('AvatarM', 'am', tactician, allClasses.am)
+const avatarF_CHAR_CLASSES = new avatar('AvatarF', 'af', tactician, allClasses.af)
+
+console.log(avatarM_CHAR_CLASSES.getClasses())
 
 const chrom_CHAR_CLASSES = new _CHAR_CLASSES('Chrom', 'lm', lord, cavalier, archer)
 const lissa_CHAR_CLASSES = new _CHAR_CLASSES('Lissa', 'f', priestCleric, pegasusKnight, troubadour)
@@ -426,7 +397,7 @@ parentNchild = {
 //     miriel: [...[troubadour],...[barbarian]],
 //     maribelle : [...[pegasusKnight, troubadour],...[cavalier, priestCleric]],
 //     panne: [...[wyvernRider],...[barbarian]],
-//     cherche:[...[troubadour, priestCleric],...[fighter, priestCleric]],
+//     cherche:[...[troubadour],...[fighter],
 //     olivia:[...[pegasusKnight, dancer],...[mercenary, barbarian]],
 //     vaike: [...[fighter, barbarian],...[knight, mercenary]],
 //     gaius:[...[fighter],...[pegasusKnight]],
@@ -435,7 +406,8 @@ parentNchild = {
 //     henry:[...[barbarian],...[troubadour]]
 // }
 
-classConvert.set('Lissa', [[pegasusKnight, troubadour],[ myrmidon, barbarian]])
+ let classConvert = new Map
+ classConvert.set('Lissa', [[pegasusKnight, troubadour],[ myrmidon, barbarian]])
     .set('Miriel', [[troubadour],[barbarian]])
     .set('Maribelle', [[pegasusKnight, troubadour],[cavalier, priestCleric]])
     .set('Panne', [[wyvernRider],[barbarian]])
@@ -468,7 +440,7 @@ parentTable = [
 
 //console.log(baby(tharja_CHAR_CLASSES, sully_CHAR_CLASSES))
  //console.log(baby(cordelia_CHAR_CLASSES, stahl_CHAR_CLASSES))
- console.log(baby(sumia_CHAR_CLASSES, chrom_CHAR_CLASSES))
+//  console.log(baby(sumia_CHAR_CLASSES, chrom_CHAR_CLASSES))
 // console.log(baby(avatarM_CHAR_CLASSES, flavia_CHAR_CLASSES))
 
  //console.log(baby(stahl_CHAR_CLASSES, sully_CHAR_CLASSES))
