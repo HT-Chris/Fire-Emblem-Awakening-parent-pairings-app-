@@ -1,26 +1,29 @@
 
+/*
+grab data from stats and classes
+
+have it where it shows mother and daugther with father as the selectable
+
+will recommend father base on what skills are desired
+
+ex:
+    select child/ mother
+    scroll? father list
+    display childs growths, classes, skills, cap mods. also display available inherited skills(overlapping skills will be marked)
+        
+    
+    able to save pairings and grey out used fathers
 
 
-//  GENDER SPECIFIC CLASSES CONVERSION --not finished
+    function( mother/daughter, father)
 
-let genderClassConversion ={
-    lissa : ['pegasus knight, troubadour' , 'myrmidon, barbarian'],
-    miriel: ['troubadour', 'barbarian'],
-    maribelle : ['pegasus knight, troubadour','cavalier, priest'],
-    panne: ['wyvern rider', 'barbarian'],
-    cherche:['troubadour cleric', 'fighter priest'],
-    olivia:['pegasus knight, dancer', 'mercenary, barbarian'],
-    vaike: ['fighter barbarian', 'knight mercenary'],
-    gaius:['fighter', 'pegasus knight'],
-    donnel:['fighter, villager','pegasus knight, troubadour'],
-    gregor:['barbarian','troubadour'],
-    henry:['barbarian', 'troubadour']
-}
-
-//console.log(sully_CHAR_CLASSES.getSkill())
-
-
-console.log(kjelle_CHILD_CLASSES.getSkill())
+    child name
+    starting class
+    available class
+    learnable skills
+    growths
+    caps
 
 
 
+*/
