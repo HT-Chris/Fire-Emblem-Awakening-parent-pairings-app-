@@ -23,7 +23,7 @@ How to Use:
 
 Installation:
 
-  Clone the Repository: git clone [repository URL]
+  Clone the Repository: git clone https://github.com/HT-Chris/Fire-Emblem-Awakening-parent-pairings-app-
   Open the Project: Navigate to the project directory.
   Launch the Application: Open the index.html file in your preferred web browser.
 
